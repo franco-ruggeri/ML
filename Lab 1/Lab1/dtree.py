@@ -122,7 +122,7 @@ def check(tree, testdata):
 
 
 def allPruned(tree):
-    "Return a list if trees, each with one node replaced by the corresponding default class"
+    "Return a list of trees, each with one node replaced by the corresponding default class"
     if isinstance(tree, TreeLeaf):
         return ()
     alternatives = (TreeLeaf(tree.default),)
