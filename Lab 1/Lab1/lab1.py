@@ -72,6 +72,7 @@ def partition(data, fraction):
     break_point = int(len(ldata) * fraction)
     return ldata[:break_point], ldata[break_point:]
 
+
 def reduced_error_pruning(data, attributes, fraction):
     "Generate the pruned tree according to the reduced error pruning"
     training, validation = partition(data, fraction)
@@ -86,6 +87,7 @@ def reduced_error_pruning(data, attributes, fraction):
         else:
             complete = True
     return best_tree
+
 
 print("\n----------ASSIGNMENT 7----------\n")
 N = 100
