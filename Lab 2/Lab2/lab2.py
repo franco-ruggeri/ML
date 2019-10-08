@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 
 ################
-# Init #########
+# Inputs #######
 ################
 
 # init seed (debugging)
@@ -34,7 +34,7 @@ targets = targets[permute]
 
 
 #####################
-# Build SVM #########
+# SVM training ######
 #####################
 
 # functions (they use global variables defined below)
@@ -43,11 +43,11 @@ def linear_kernel(x, y):
 
 
 def polynomial_kernel(x, y, p):
-    return math.pow(numpy.dot(x, y) + 1, p)
+    return (numpy.dot(x, y) + 1) ** p
 
 
 def radial_kernel(x, y, sigma):
-    return math.exp(- numpy.linalg.norm(numpy.array(x) - y) / (2 * sigma))
+    return math.exp(- numpy.linalg.norm(numpy.array(x) - y)**2 / (2 * sigma**2))
 
 
 def objective(a):
@@ -63,11 +63,11 @@ def ind(y):
 
 
 # choose kernel
-K = linear_kernel
+# K = linear_kernel
 # p = 2
 # K = lambda x, y: polynomial_kernel(x, y, p)
-# sigma = 1e-1
-# K = lambda x, y: radial_kernel(x, y, sigma)
+sigma = 1e0
+K = lambda x, y: radial_kernel(x, y, sigma)
 
 # soft margins
 C = None
@@ -83,7 +83,8 @@ if not ret['success']:
 alpha = ret['x']
 
 # extract non-zero alpha
-support_vectors = [{'point': inputs[i], 'alpha': alpha[i], 'target': targets[i]} for i in range(N) if abs(alpha[i]) > 1e-5]
+support_vectors = [{'point': inputs[i], 'alpha': alpha[i], 'target': targets[i]}
+                   for i in range(N) if abs(alpha[i]) > 1e-5]
 if len(support_vectors) < 1:
     print('No support vectors')
     exit(-1)
