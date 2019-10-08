@@ -43,11 +43,11 @@ def linear_kernel(x, y):
 
 
 def polynomial_kernel(x, y, p):
-    return math.pow(numpy.dot(x, y) + 1, p)
+    return (numpy.dot(x, y) + 1) ** p
 
 
 def radial_kernel(x, y, sigma):
-    return math.exp(- numpy.linalg.norm(numpy.array(x) - y) / (2 * sigma))
+    return math.exp(- numpy.linalg.norm(numpy.array(x) - y)**2 / (2 * sigma**2))
 
 
 def objective(a):
@@ -83,7 +83,8 @@ if not ret['success']:
 alpha = ret['x']
 
 # extract non-zero alpha
-support_vectors = [{'point': inputs[i], 'alpha': alpha[i], 'target': targets[i]} for i in range(N) if abs(alpha[i]) > 1e-5]
+support_vectors = [{'point': inputs[i], 'alpha': alpha[i], 'target': targets[i]}
+                   for i in range(N) if abs(alpha[i]) > 1e-5]
 if len(support_vectors) < 1:
     print('No support vectors')
     exit(-1)
