@@ -9,15 +9,15 @@ from scipy.optimize import minimize
 ################
 
 # init seed (debugging)
-# numpy.random.seed(100)
+numpy.random.seed(100)
 
 # 2 clusters of class A (+1)
 classA = numpy.concatenate(
     (numpy.random.randn(10, 2) * 0.2 + [1.5, 0.5],
-     numpy.random.randn(10, 2) * 0.2 + [-1.5, 0.5]))
+     numpy.random.randn(10, 2) * 0.2 + [-1.5, -0.5]))
 
 # 1 cluster of class B (-1)
-classB = numpy.random.randn(20, 2) * 0.2 + [0.0, -0.5]
+classB = numpy.random.randn(20, 2) * 0.2 + [0.0, 0.0]
 
 # training set (data samples and labels)
 inputs = numpy.concatenate((classA, classB))
@@ -31,6 +31,22 @@ permute = list(range(N))
 random.shuffle(permute)
 inputs = inputs[permute]
 targets = targets[permute]
+
+# plot training set
+plt.plot([p[0] for p in classA],
+         [p[1] for p in classA],
+         'b.')
+plt.plot([p[0] for p in classB],
+         [p[1] for p in classB],
+         'r.')
+
+# configure
+plt.axis([-2, 2, -2, 2])
+plt.title('training set 4')
+
+# save and show plot
+plt.savefig('plots/training_set_4.jpg')
+# plt.show()
 
 
 #####################
@@ -79,6 +95,7 @@ P = [[targets[i] * targets[j] * K(inputs[i], inputs[j]) for j in range(N)] for i
 ret = minimize(objective, numpy.zeros(N), bounds=[(0, C) for x in range(N)], constraints={'type': 'eq', 'fun': zerofun})
 if not ret['success']:
     print('No solution found by minimize()')
+    print(ret['message'])
     exit(-1)
 alpha = ret['x']
 
@@ -113,7 +130,7 @@ plt.plot([x['point'][0] for x in support_vectors],
 
 # plot decision boundary and margin
 xgrid = numpy.linspace(-5, 5)
-ygrid = numpy.linspace(-4, 4)
+ygrid = numpy.linspace(-5, 5)
 grid = numpy.array([[ind([x, y]) for x in xgrid] for y in ygrid])
 plt.contour(xgrid, ygrid, grid,
             (-1.0, 0.0, 1.0),
@@ -123,7 +140,8 @@ plt.contour(xgrid, ygrid, grid,
 
 # configure
 plt.axis([-2, 2, -2, 2])
+plt.title('SVM with ' + K.__name__.replace('_', ' '))
 
 # save and show plot
-plt.savefig('svmplot.pdf')
-plt.show()
+plt.savefig('plots/linear_kernel_4.jpg')
+# plt.show()
