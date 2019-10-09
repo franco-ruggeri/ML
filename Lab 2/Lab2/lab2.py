@@ -13,11 +13,11 @@ numpy.random.seed(100)
 
 # 2 clusters of class A (+1)
 classA = numpy.concatenate(
-    (numpy.random.randn(10, 2) * 0.4 + [1.2, 0.5],
-     numpy.random.randn(10, 2) * 0.4 + [-1.2, 0.5]))
+    (numpy.random.randn(10, 2) * 0.35 + [1.5, 0.5],
+     numpy.random.randn(10, 2) * 0.35 + [-1.5, 0.5]))
 
 # 1 cluster of class B (-1)
-classB = numpy.random.randn(20, 2) * 0.4 + [0.0, -0.5]
+classB = numpy.random.randn(20, 2) * 0.35 + [0.0, -0.5]
 
 # training set (data samples and labels)
 inputs = numpy.concatenate((classA, classB))
@@ -45,8 +45,8 @@ plt.axis([-2, 2, -2, 2])
 plt.title('training set 3')
 
 # save and show plot
-plt.savefig('plots/training_set_3.jpg')
-# plt.show()
+# plt.savefig('plots/training_set_3.jpg')
+plt.show()
 
 
 #####################
@@ -67,7 +67,7 @@ def radial_kernel(x, y, sigma):
 
 
 def objective(a):
-    return 1/2 * numpy.dot(a, numpy.dot(a, P)) - numpy.sum(a)
+    return 1/2 * numpy.dot(a, numpy.dot(P, a)) - numpy.sum(a)
 
 
 def zerofun(a):
@@ -89,7 +89,7 @@ K = linear_kernel
 C = None
 
 # matrix to avoid computing the same quantities a lot of times
-P = [[targets[i] * targets[j] * K(inputs[i], inputs[j]) for j in range(N)] for i in range(N)]
+P = numpy.array([[targets[i] * targets[j] * K(inputs[i], inputs[j]) for j in range(N)] for i in range(N)])
 
 # optimization (minimization of dual problem)
 ret = minimize(objective, numpy.zeros(N), bounds=[(0, C) for x in range(N)], constraints={'type': 'eq', 'fun': zerofun})
@@ -143,5 +143,5 @@ plt.axis([-2, 2, -2, 2])
 plt.title('SVM with ' + K.__name__.replace('_', ' '))
 
 # save and show plot
-plt.savefig('plots/linear_kernel_3.jpg')
-# plt.show()
+# plt.savefig('plots/linear_kernel_3.jpg')
+plt.show()
