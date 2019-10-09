@@ -13,11 +13,11 @@ numpy.random.seed(100)
 
 # 2 clusters of class A (+1)
 classA = numpy.concatenate(
-    (numpy.random.randn(10, 2) * 0.2 + [1.5, 0.5],
-     numpy.random.randn(10, 2) * 0.2 + [-1.5, -0.5]))
+    (numpy.random.randn(10, 2) * 0.4 + [1.2, 0.5],
+     numpy.random.randn(10, 2) * 0.4 + [-1.2, 0.5]))
 
 # 1 cluster of class B (-1)
-classB = numpy.random.randn(20, 2) * 0.2 + [0.0, 0.0]
+classB = numpy.random.randn(20, 2) * 0.4 + [0.0, -0.5]
 
 # training set (data samples and labels)
 inputs = numpy.concatenate((classA, classB))
@@ -42,10 +42,10 @@ plt.plot([p[0] for p in classB],
 
 # configure
 plt.axis([-2, 2, -2, 2])
-plt.title('training set 4')
+plt.title('training set 3')
 
 # save and show plot
-plt.savefig('plots/training_set_4.jpg')
+plt.savefig('plots/training_set_3.jpg')
 # plt.show()
 
 
@@ -143,5 +143,5 @@ plt.axis([-2, 2, -2, 2])
 plt.title('SVM with ' + K.__name__.replace('_', ' '))
 
 # save and show plot
-plt.savefig('plots/linear_kernel_4.jpg')
+plt.savefig('plots/linear_kernel_3.jpg')
 # plt.show()
