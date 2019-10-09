@@ -4,20 +4,51 @@ import math
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 
+# we support 5 instances of inputs, choose a value in [1,5]
+instance = 5
+
+
 ################
 # Inputs #######
 ################
 
-# init seed (debugging)
-numpy.random.seed(100)
+# seed (debugging)
+numpy.random.seed(1)
+
+# size and center of clusters
+if instance == 1:
+    size = 0.2
+    meanA1 = [1.5, 0.5]
+    meanA2 = [-1.5, 0.5]
+    meanB = [0.0, -0.5]
+elif instance == 2:
+    size = 0.3
+    meanA1 = [1.5, 0.5]
+    meanA2 = [-1.5, 0.5]
+    meanB = [0.0, -0.5]
+elif instance == 3:
+    size = 0.4
+    meanA1 = [1.5, 0.5]
+    meanA2 = [-1.5, 0.5]
+    meanB = [0.0, -0.5]
+elif instance == 4:
+    size = 0.2
+    meanA1 = [1.5, 0.5]
+    meanA2 = [-1.5, -0.5]
+    meanB = [0.0, 0.0]
+elif instance == 5:
+    size = 0.2
+    meanA1 = [0.5, 0.2]
+    meanA2 = [-0.5, 0.2]
+    meanB = [0.0, -0.2]
 
 # 2 clusters of class A (+1)
 classA = numpy.concatenate(
-    (numpy.random.randn(10, 2) * 0.35 + [1.5, 0.5],
-     numpy.random.randn(10, 2) * 0.35 + [-1.5, 0.5]))
+    (numpy.random.randn(10, 2) * size + meanA1,
+     numpy.random.randn(10, 2) * size + meanA2))
 
 # 1 cluster of class B (-1)
-classB = numpy.random.randn(20, 2) * 0.35 + [0.0, -0.5]
+classB = numpy.random.randn(20, 2) * size + meanB
 
 # training set (data samples and labels)
 inputs = numpy.concatenate((classA, classB))
@@ -42,11 +73,11 @@ plt.plot([p[0] for p in classB],
 
 # configure
 plt.axis([-2, 2, -2, 2])
-plt.title('training set 3')
+plt.title('training set {}'.format(instance))
 
 # save and show plot
-# plt.savefig('plots/training_set_3.jpg')
-plt.show()
+plt.savefig('plots/training_set_{}.jpg'.format(instance))
+# plt.show()
 
 
 #####################
@@ -79,11 +110,11 @@ def ind(y):
 
 
 # choose kernel
-K = linear_kernel
-# p = 2
+# K = linear_kernel
+# p = 3
 # K = lambda x, y: polynomial_kernel(x, y, p)
-# sigma = 1e0
-# K = lambda x, y: radial_kernel(x, y, sigma)
+sigma = 0.3
+K = lambda x, y: radial_kernel(x, y, sigma)
 
 # soft margins
 C = None
@@ -143,5 +174,5 @@ plt.axis([-2, 2, -2, 2])
 plt.title('SVM with ' + K.__name__.replace('_', ' '))
 
 # save and show plot
-# plt.savefig('plots/linear_kernel_3.jpg')
-plt.show()
+plt.savefig('plots/' + K.__name__ + '_{}.jpg'.format(instance))
+# plt.show()
