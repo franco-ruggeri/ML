@@ -111,7 +111,7 @@ def ind(y):
 
 # choose kernel
 # K = linear_kernel
-# p = 3
+# p = 10
 # K = lambda x, y: polynomial_kernel(x, y, p)
 sigma = 0.3
 K = lambda x, y: radial_kernel(x, y, sigma)
@@ -171,7 +171,9 @@ plt.contour(xgrid, ygrid, grid,
 
 # configure
 plt.axis([-2, 2, -2, 2])
-plt.title('SVM with ' + K.__name__.replace('_', ' '))
+# plt.title('SVM with ' + K.__name__.replace('_', ' '))
+# plt.title('SVM with polynomial kernel p = {}'.format(p))
+plt.title('SVM with radial kernel sigma = {}'.format(sigma))
 
 # save and show plot
 plt.savefig('plots/' + K.__name__ + '_{}.jpg'.format(instance))
