@@ -63,11 +63,11 @@ def ind(y):
 
 
 # choose kernel
-# K = linear_kernel
+K = linear_kernel
 # p = 2
 # K = lambda x, y: polynomial_kernel(x, y, p)
-sigma = 1e0
-K = lambda x, y: radial_kernel(x, y, sigma)
+# sigma = 1e0
+# K = lambda x, y: radial_kernel(x, y, sigma)
 
 # soft margins
 C = None
@@ -121,9 +121,9 @@ plt.contour(xgrid, ygrid, grid,
             linewidths=(1, 3, 1),
             linestyles=('dashed', 'solid', 'dashed'))
 
-# configure and show plot
+# configure
 plt.axis([-2, 2, -2, 2])
-plt.show()
 
-# save plot
-# plt.savefig('svmplot.pdf')
+# save and show plot
+plt.savefig('svmplot.pdf')
+plt.show()
