@@ -171,10 +171,8 @@ plt.contour(xgrid, ygrid, grid,
 
 # configure
 plt.axis([-2, 2, -2, 2])
-# plt.title('SVM with ' + K.__name__.replace('_', ' '))
-# plt.title('SVM with polynomial kernel p = {}'.format(p))
-plt.title('SVM with radial kernel sigma = {}'.format(sigma))
+plt.title('SVM')
 
 # save and show plot
-plt.savefig('plots/' + K.__name__ + '_{}.jpg'.format(instance))
+plt.savefig('plots/SVM_{}'.format(instance))
 # plt.show()
