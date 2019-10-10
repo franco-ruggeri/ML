@@ -41,14 +41,15 @@ targets = targets[permute]
 
 fig = plt.figure()
 
-plt.plot([p[0] for p in classA],
-         [p[1] for p in classA],
-         'b.')
-plt.plot([p[0] for p in classB],
-         [p[1] for p in classB],
-         'r.')
+# plt.plot([p[0] for p in classA],
+#          [p[1] for p in classA],
+#          'b.')
+# plt.plot([p[0] for p in classB],
+#          [p[1] for p in classB],
+#          'r.')
 
 plt.title("")
+# plt.show()
 
 # ax = plt.axis([-2, 2, -2, 2])
 ax = plt.axes(xlim=(-2, 2), ylim=(-2, 2))
@@ -68,12 +69,12 @@ def polynomial_kernel(x, y, p=3):
     return (numpy.dot(x, y) + 1) ** p
 
 
-def radial_kernel(x, y, sigma=1.5):
+def radial_kernel(x, y, sigma=0.5):
     return math.exp(- numpy.linalg.norm(numpy.array(x) - y) ** 2 / (2 * sigma ** 2))
 
 
 def objective(a):
-    return 1 / 2 * numpy.dot(a, numpy.dot(a, P)) - numpy.sum(a)
+    return 1 / 2 * numpy.dot(a, numpy.dot(P, a)) - numpy.sum(a)
 
 
 def zerofun(a):
@@ -152,9 +153,9 @@ def animate(i):
     plt.plot([p[0] for p in classB],
              [p[1] for p in classB],
              'r.')
-    plt.plot([x['point'][0] for x in support_vectors],
-             [x['point'][1] for x in support_vectors],
-             'yo')
+    # plt.plot([x['point'][0] for x in support_vectors],
+    #          [x['point'][1] for x in support_vectors],
+    #          'yo')
     cont = plt.contour(xgrid, ygrid, grid,
                        (-1.0, 0.0, 1.0),
                        colors=('red', 'black', 'blue'),
@@ -171,7 +172,7 @@ def init():
 anim = animation.FuncAnimation(fig, animate, init_func=init,
                                frames=400, interval=1, blit=False)
 
-anim.save('radial_1_5_animation.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
+anim.save('radial_0_5_animation.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
 
 plt.show()
 

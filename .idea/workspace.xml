@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6effd43a-eb27-412e-bc65-3bc81940759d" name="Default Changelist" comment="" />
+    <list default="true" id="6effd43a-eb27-412e-bc65-3bc81940759d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab 2/Lab2/img/difficult_radial.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab 2/Lab2/lab2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lab 2/Lab2/lab2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab 2/Lab2/linear_animation.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/Lab 2/Lab2/linear_animation.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab 2/Lab2/polynomial_3_animation.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/Lab 2/Lab2/polynomial_3_animation.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab 2/Lab2/polynomial_9_animation.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/Lab 2/Lab2/polynomial_9_animation.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab 2/Lab2/radial_1_5_animation.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/Lab 2/Lab2/radial_1_5_animation.mp4" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +45,28 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.lab2">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="ML" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="lab2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -59,6 +89,9 @@
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="C:\Users\pc\Anaconda3\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lab2" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -93,7 +126,9 @@
       <option name="presentableId" value="Default" />
       <updated>1570296152932</updated>
       <workItem from="1570296159783" duration="796000" />
-      <workItem from="1570522498614" duration="16531000" />
+      <workItem from="1570522498614" duration="20371000" />
+      <workItem from="1570642850965" duration="259000" />
+      <workItem from="1570695847219" duration="1936000" />
     </task>
     <servers />
   </component>
