@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 
 # we support 5 instances of inputs, choose a value in [1,5]
-instance = 5
+instance = 2
 
 
 ################
@@ -13,7 +13,7 @@ instance = 5
 ################
 
 # seed (debugging)
-numpy.random.seed(1)
+numpy.random.seed(100)
 
 # size and center of clusters
 if instance == 1:
@@ -76,7 +76,7 @@ plt.axis([-2, 2, -2, 2])
 plt.title('training set {}'.format(instance))
 
 # save and show plot
-plt.savefig('plots/training_set_{}.jpg'.format(instance))
+# plt.savefig('plots/training_set_{}.jpg'.format(instance))
 # plt.show()
 
 
@@ -110,11 +110,11 @@ def ind(y):
 
 
 # choose kernel
-# K = linear_kernel
+K = linear_kernel
 # p = 10
 # K = lambda x, y: polynomial_kernel(x, y, p)
-sigma = 0.3
-K = lambda x, y: radial_kernel(x, y, sigma)
+# sigma = 0.3
+# K = lambda x, y: radial_kernel(x, y, sigma)
 
 # soft margins
 C = None
@@ -174,5 +174,5 @@ plt.axis([-2, 2, -2, 2])
 plt.title('SVM')
 
 # save and show plot
-plt.savefig('plots/SVM_{}'.format(instance))
-# plt.show()
+# plt.savefig('plots/SVM_{}.jpg'.format(instance))
+plt.show()
