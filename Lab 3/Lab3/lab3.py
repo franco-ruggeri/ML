@@ -115,7 +115,7 @@ def classifyBayes(X, prior, mu, sigma):
         aux = X - mu[k]
         logProb[k] = \
             - np.log(sigma_det) / 2 \
-            - np.diag(np.dot(np.dot(aux, sigma_inv), aux.T)) \
+            - np.diag(np.dot(np.dot(aux, sigma_inv), aux.T)) / 2 \
             + np.log(prior[k])
     # ==========================
 
@@ -283,8 +283,8 @@ class BoostClassifier(object):
 print('Iris dataset with boosting:')
 testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='iris', split=0.7)
 print()
-# print('Vowel dataset with boosting:')
-# testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='vowel', split=0.7)
+print('Vowel dataset with boosting:')
+testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='vowel', split=0.7)
 plotBoundary(BoostClassifier(BayesClassifier(), T=10), dataset='iris', split=0.7)
 
 # Now repeat the steps with a decision tree classifier.
