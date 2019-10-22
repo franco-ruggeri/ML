@@ -149,19 +149,20 @@ class BayesClassifier(object):
 # 
 # Call `genBlobs` and `plotGaussian` to verify your estimates.
 
-X, labels = genBlobs(centers=5)
-mu, sigma = mlParams(X, labels)
-plotGaussian(X, labels, mu, sigma)
+# X, labels = genBlobs(centers=5)
+# mu, sigma = mlParams(X, labels)
+# plotGaussian(X, labels, mu, sigma)
 
 # Call the `testClassifier` and `plotBoundary` functions for this part.
 
-print('Iris dataset:')
-testClassifier(BayesClassifier(), dataset='iris', split=0.7)
-print()
-print('Vowel dataset:')
-testClassifier(BayesClassifier(), dataset='vowel', split=0.7)
-print()
-plotBoundary(BayesClassifier(), dataset='iris', split=0.7)
+# print('Iris dataset Naive Bayes:')
+# testClassifier(BayesClassifier(), dataset='iris', split=0.7)
+# print()
+# print('Vowel dataset Naive Bayes:')
+# testClassifier(BayesClassifier(), dataset='vowel', split=0.7)
+# print()
+# plotBoundary(BayesClassifier(), dataset='iris', split=0.7)
+# plotBoundary(BayesClassifier(), dataset='vowel', split=0.7)
 
 
 # ## Boosting functions to implement
@@ -194,7 +195,6 @@ def trainBoost(base_classifier, X, labels, T=10):
 
         # construct the alphas etc.
         # ==========================
-
         # logical indexes where the classification is correct
         idx = vote == labels
 
@@ -280,31 +280,28 @@ class BoostClassifier(object):
 # 
 # Call the `testClassifier` and `plotBoundary` functions for this part.
 
-print('Iris dataset with boosting:')
-testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='iris', split=0.7)
-print()
-print('Vowel dataset with boosting:')
-testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='vowel', split=0.7)
-plotBoundary(BoostClassifier(BayesClassifier(), T=10), dataset='iris', split=0.7)
+# print('Iris dataset boosted Naive Bayes:')
+# testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='iris', split=0.7)
+# print()
+# print('Vowel dataset boosted Naive Bayes:')
+# testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='vowel', split=0.7)
+# plotBoundary(BoostClassifier(BayesClassifier(), T=10), dataset='iris', split=0.7)
+# plotBoundary(BoostClassifier(BayesClassifier(), T=10), dataset='vowel', split=0.7)
 
 # Now repeat the steps with a decision tree classifier.
 
-
+# print('Iris dataset Decision Tree:')
 # testClassifier(DecisionTreeClassifier(), dataset='iris', split=0.7)
-
-
+# print()
+# print('Iris dataset boosted Decision Tree:')
 # testClassifier(BoostClassifier(DecisionTreeClassifier(), T=10), dataset='iris',split=0.7)
-
-
-# testClassifier(DecisionTreeClassifier(), dataset='vowel',split=0.7)
-
-
+# print()
+# print('Vowel dataset Decision Tree:')
+# testClassifier(DecisionTreeClassifier(), dataset='vowel', split=0.7)
+# print()
+# print('Vowel dataset boosted Decision Tree:')
 # testClassifier(BoostClassifier(DecisionTreeClassifier(), T=10), dataset='vowel',split=0.7)
-
-
 # plotBoundary(DecisionTreeClassifier(), dataset='iris',split=0.7)
-
-
 # plotBoundary(BoostClassifier(DecisionTreeClassifier(), T=10), dataset='iris',split=0.7)
 
 
