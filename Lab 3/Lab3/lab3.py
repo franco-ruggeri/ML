@@ -89,7 +89,7 @@ def mlParams(X, labels, W=None):
         # means and covariances (with naive Bayes assumption)
         Wk_sum = np.sum(Wk)
         mu[i] = np.sum(Wk * Xk, axis=0) / Wk_sum
-        sigma[i] = np.diag(np.sum(Wk * (Xk - mu[i])**2, axis=0) / Wk_sum)
+        sigma[i] = np.diag(np.sum(Wk * (Xk - mu[i]) ** 2, axis=0) / Wk_sum)
     # ==========================
 
     return mu, sigma
@@ -125,7 +125,8 @@ def classifyBayes(X, prior, mu, sigma):
     return h
 
 
-# The implemented functions can now be summarized into the `BayesClassifier` class, which we will use later to test the classifier, no need to add anything else here:
+# The implemented functions can now be summarized into the `BayesClassifier` class, which we will use later to test
+# the classifier, no need to add anything else here:
 
 
 # NOTE: no need to touch this
@@ -151,7 +152,6 @@ class BayesClassifier(object):
 X, labels = genBlobs(centers=5)
 mu, sigma = mlParams(X, labels)
 plotGaussian(X, labels, mu, sigma)
-
 
 # Call the `testClassifier` and `plotBoundary` functions for this part.
 
@@ -201,18 +201,20 @@ def trainBoost(base_classifier, X, labels, T=10):
         # error
         delta = np.zeros((Npts, 1))
         delta[idx, :] = 1
-        eps = np.sum(wCur * (1-delta))
+        eps = np.sum(wCur * (1 - delta))
+        if eps == 0:    # strong classifier, boosting not necessary
+            alphas.append(1)
+            break
 
         # influence of vote (confidence)
-        alpha = float('inf') if eps == 0 else 1/2 * (np.log(1-eps) - np.log(eps))
+        alpha = 1 / 2 * (np.log(1 - eps) - np.log(eps))
         alphas.append(alpha)
 
         # update weights
         sign = np.ones((Npts, 1))
         sign[idx, :] = -1
-        wCur = wCur * np.exp(sign * alpha)              # not normalized
-        Z = np.sum(wCur)
-        wCur = np.zeros((Npts, 1)) if Z == 0 else wCur/Z   # normalized
+        wCur = wCur * np.exp(sign * alpha)
+        wCur /= np.sum(wCur)  # normalize
         # ==========================
 
     return classifiers, alphas
@@ -251,7 +253,9 @@ def classifyBoost(X, classifiers, alphas, Nclasses):
         return np.argmax(votes, axis=1)
 
 
-# The implemented functions can now be summarized another classifer, the `BoostClassifier` class. This class enables boosting different types of classifiers by initializing it with the `base_classifier` argument. No need to add anything here.
+# The implemented functions can now be summarized another classifer, the `BoostClassifier` class. This class enables
+# boosting different types of classifiers by initializing it with the `base_classifier` argument. No need to add
+# anything here.
 
 
 # NOTE: no need to touch this
@@ -271,17 +275,17 @@ class BoostClassifier(object):
     def classify(self, X):
         return classifyBoost(X, self.classifiers, self.alphas, self.nbr_classes)
 
+
 # ## Run some experiments
 # 
 # Call the `testClassifier` and `plotBoundary` functions for this part.
 
 print('Iris dataset with boosting:')
-testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='iris',split=0.7)
+testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='iris', split=0.7)
 print()
-print('Vowel dataset with boosting:')
-testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='vowel',split=0.7)
-plotBoundary(BoostClassifier(BayesClassifier()), dataset='iris', split=0.7)
-
+# print('Vowel dataset with boosting:')
+# testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='vowel', split=0.7)
+plotBoundary(BoostClassifier(BayesClassifier(), T=10), dataset='iris', split=0.7)
 
 # Now repeat the steps with a decision tree classifier.
 
@@ -306,7 +310,9 @@ plotBoundary(BoostClassifier(BayesClassifier()), dataset='iris', split=0.7)
 
 # ## Bonus: Visualize faces classified using boosted decision trees
 # 
-# Note that this part of the assignment is completely voluntary! First, let's check how a boosted decision tree classifier performs on the olivetti data. Note that we need to reduce the dimension a bit using PCA, as the original dimension of the image vectors is `64 x 64 = 4096` elements.
+# Note that this part of the assignment is completely voluntary! First, let's check how a boosted decision tree
+# classifier performs on the olivetti data. Note that we need to reduce the dimension a bit using PCA,
+# as the original dimension of the image vectors is `64 x 64 = 4096` elements.
 
 
 # testClassifier(BayesClassifier(), dataset='olivetti',split=0.7, dim=20)
@@ -315,7 +321,8 @@ plotBoundary(BoostClassifier(BayesClassifier()), dataset='iris', split=0.7)
 # testClassifier(BoostClassifier(DecisionTreeClassifier(), T=10), dataset='olivetti',split=0.7, dim=20)
 
 
-# You should get an accuracy around 70%. If you wish, you can compare this with using pure decision trees or a boosted bayes classifier. Not too bad, now let's try and classify a face as belonging to one of 40 persons!
+# You should get an accuracy around 70%. If you wish, you can compare this with using pure decision trees or a
+# boosted bayes classifier. Not too bad, now let's try and classify a face as belonging to one of 40 persons!
 
 
 # X,y,pcadim = fetchDataset('olivetti') # fetch the olivetti data
