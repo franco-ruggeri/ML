@@ -301,9 +301,10 @@ class BoostClassifier(object):
 # print()
 # print('Vowel dataset boosted Decision Tree:')
 # testClassifier(BoostClassifier(DecisionTreeClassifier(), T=10), dataset='vowel',split=0.7)
-# plotBoundary(DecisionTreeClassifier(), dataset='iris',split=0.7)
-# plotBoundary(BoostClassifier(DecisionTreeClassifier(), T=10), dataset='iris',split=0.7)
-
+# plotBoundary(DecisionTreeClassifier(), dataset='iris', split=0.7)
+# plotBoundary(BoostClassifier(DecisionTreeClassifier(), T=10), dataset='iris', split=0.7)
+plotBoundary(DecisionTreeClassifier(), dataset='vowel', split=0.7)
+plotBoundary(BoostClassifier(DecisionTreeClassifier(), T=10), dataset='vowel', split=0.7)
 
 # ## Bonus: Visualize faces classified using boosted decision trees
 # 
