@@ -1,2 +1,3 @@
-# ML
-Machine Learning at KTH
+# Machine Learning
+
+Assignments for the course DD2421 Machine Learning at KTH.
